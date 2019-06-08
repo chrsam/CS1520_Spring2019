@@ -1,0 +1,168 @@
+{% extends '_base.html' %}
+{% block header %}
+Car Pool Listing
+{% endblock %}
+{% block content %}
+
+<div id="DisplayArea">
+</div>
+<div>
+  <h3>Add Car Pool Listing</h3>
+  <table>
+    <tr>
+      <td>Start Destination:</td>
+      <td>End Destination:</td>
+      <td>Start Date:</td>
+      <td>End Date:</td>
+      <td>Description:</td>
+      <td>Seats available</td>
+      <td>Contact Information:</td>
+    </tr>
+    <tr>
+      <td><input type="text" id="start_destination"></td>
+      <td><input type="text" id="end_destination"></td>
+      <td><input type="text" id="start_date"></td>
+      <td><input type="text" id="end_date"></td>
+      <td><input type="text" id="description"></td>
+      <td><input type="number" id="seats_available"></td>
+      <td><input type="text" id="contact_info"></td>
+      <td><button onclick="saveItem();">Add</button></td>
+    </tr>
+  </table>
+</div>
+<script>
+
+
+// we use this function to send a POST request to the server for updating / 
+// creating new list items.
+function saveItem(id) {
+  let params = {};
+  if (id) {
+    params['id'] = id;
+    params['start_destination'] = document.getElementById("edit_start_destination").value;
+    params['end_destination'] = document.getElementById("edit_end_destination").value;
+    params['start_date'] = document.getElementById("edit_start_date").value;
+    params['end_date'] = document.getElementById("edit_end_date").value;
+    params['description'] = document.getElementById("edit_description").value;
+    params['seats_available'] = document.getElementById("edit_seats_available").value;
+    params['contact_info'] = document.getElementById("edit_contact_info").value;
+  } else {
+    // if no ID is supplied this is creating a new item.
+    params['start_destination'] = document.getElementById("start_destination").value;
+    params['end_destination'] = document.getElementById("end_destination").value;
+    params['start_date'] = document.getElementById("start_date").value;
+    params['end_date'] = document.getElementById("end_date").value;
+    params['description'] = document.getElementById("description").value;
+    params['seats_available'] = document.getElementById("seats_available").value;
+    params['contact_info'] = document.getElementById("contact_info").value;
+  }
+  sendJsonRequest('save-item', objectToParameters(params), itemSaved);
+}
+
+// use this to clear the values in the "add item" form
+function clearItemForm() {
+  document.getElementById("start_destination").value = '';
+  document.getElementById("end_destination").value = '';
+  document.getElementById("start_date").value = '';
+  document.getElementById("end_date").value = '';
+  document.getElementById("description").value = '';
+  document.getElementById("seats_available").value = '';
+  document.getElementById("contact_info").value = '';
+}
+
+
+
+// this is called in response to saving list item data.
+
+function itemSaved(result, targetUrl, params) {
+  if (result && result.ok) {
+    console.log("Saved item.");
+    clearItemForm();
+    loadItems();
+  } else {
+    console.log("Received error: " + result.error);
+    showError(result.error);
+  }
+}
+
+
+// when the list items are loaded from the server, we use this function to
+// render them on the page
+function displayList(result, targetUrl) {
+  if (result && result.length) {
+    let text = '<ul>';
+    for (var i = 0; i < result.length; i++) {
+      text += '<li id="li_' + result[i].id + '">';
+      text += '<button onclick="editItem(\'' + result[i].id + '\');">edit</button> ';
+      text += '<button onclick="deleteItem(\'' + result[i].id + '\');">x</button> ';
+      text += result[i].start_destination + ') ' + result[i].end_destination + ') ' + result[i].start_date + ') ' + result[i].end_date + ') ' + result[i].description + ') ' + result[i].seats_available + ') ' + result[i].contact_info;
+      text += '</li>';
+    }
+    text += '</ul>';
+    console.log("updating DisplayArea: " + text);
+    document.getElementById("DisplayArea").innerHTML = text;
+  } else {
+    document.getElementById("DisplayArea").innerHTML = 'No car pool listings.';
+  }
+}
+
+
+
+// we use this to trigger a load of the data from the server for this list item
+// so we can be sure to edit the latest data.
+function editItem(id) {
+  getData('/get-item/' + id, itemLoaded);
+}
+
+// when the item is loaded, we render an edit form in the list.
+function itemLoaded(result, targetUrl) {
+  let text = '';
+  text += '<input type="text" id="edit_start_destination" value="' + result.start_destination + '"> ';
+  text += '<input type="text" id="edit_end_destination" value="' + result.end_destination + '"> ';
+  text += '<input type="text" id="edit_start_date" value="' + result.start_date + '"> ';
+  text += '<input type="text" id="edit_end_date" value="' + result.end_date + '"> ';
+  text += '<input type="text" id="edit_description" value="' + result.description + '"> ';
+  text += '<input type="text" id="edit_seats_available" value="' + result.seats_available + '"> ';
+  text += '<input type="text" id="edit_contact_info" value="' + result.contact_info + '"> ';
+  text += '<button onclick="saveItem(' + result.id + ');">save</button> ';
+  text += '<button onclick="loadItems();">cancel</button> ';
+  document.getElementById('li_' + result.id).innerHTML = text;
+}
+
+
+
+function deleteItem(id) {
+  if (confirm("Are you sure you want to delete?")) {
+    let params = {"id": id};
+    sendJsonRequest('delete-item', objectToParameters(params), itemDeleted);
+  }
+}
+
+
+
+// when we delete an item, we use this to reload the list of items.
+function itemDeleted(result, targetUrl, params) {
+  if (result && result.ok) {
+    console.log("Deleted item.");
+    loadItems();
+  } else {
+    console.log("Received error: " + result.error);
+    showError(result.error);
+  }
+}
+
+
+function loadItems() {
+
+  getData('/load-cpl-items', displayList);
+
+}
+
+// when the page loads, let's load the initial items into the list.
+
+loadItems();
+
+
+</script>
+
+{% endblock %}

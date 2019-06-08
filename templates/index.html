@@ -1,0 +1,72 @@
+{% extends '_base.html' %}
+{% block content %}
+<center>
+<div class = "center">
+    <h2 style="color:white"> Welcome to Pitt Rideshare!</h2>
+{% if not user %}
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Create Account</button>
+</div>
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/dologin" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>         
+            </div>
+                    <div class="logincontainer">
+                      <label for="uname"><b>Username</b></label>
+                      <input type="text" placeholder="Enter Username" name="username" required>
+                
+                      <label for="psw"><b>Password</b></label>
+                      <input type="password" placeholder="Enter Password" name="password" required>
+                        
+                      <button type="submit">Login</button>
+                      
+                    </div>
+                
+                    <div class="logincontainer" style="background-color:#f1f1f1">
+                        <!-- <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button> -->
+                    </div>
+                </form>
+            </div>
+
+            <div id="id02" class="modal">
+            <form class="modal-content animate" action="/make_account" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>            
+            </div>
+                  
+            <div class="logincontainer">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+
+                <label for="email"><b>Enter Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[pitt]+\.[edu]{3,}$" title="Must be your Pitt email" required>
+                  
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password1" pattern=".{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password2.pattern = this.value;" title="Six or more characters" required>
+                        
+                <label for="psw2"><b>Re-enter Password</b></label>
+                <input type="password" placeholder="Re-enter Password" name="password2" pattern=".{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" title="Your passwords do not match" required>
+                          
+                <button type="submit">Create Account</button>
+            </div>  
+            <div class="logincontainer" style="background-color:#f1f1f1">
+                <!-- <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>-->
+            </div>
+    </form>
+</div>
+</center>
+{% endif %}
+      <script>
+            //Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                modal.style.display = "none";
+                }
+            }
+        }         
+    </script> 
+{% endblock %}

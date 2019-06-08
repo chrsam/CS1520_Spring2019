@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+{% block content %}
+{% if user %}
+    <div class = "formcontainer" style="color:black">
+        Where are you heading to?<br>
+    </div>
+    <hr>
+    <div class = "formcontainer" style="color:black">
+    <body>
+        <form id ="edit" action="/editsubmission" method="post">
+        Start Destination:<br>
+        <input type="text" name="start_destination" value="{{listing.start_destination}}" required><br>
+        End Destination:<br>
+        <input type="text" name="end_destination" required><br>
+        Start Date:<br>
+        <input type="date" name="start_date" min="2019-04-15" required><br>
+        End Date:<br>
+        <input type="date" name="end_date" min="2019-04-15" required><br>
+        Description:<br>
+        <input type="text" name="description" required><br>
+        Seats available:<br>
+        <input type="number" name="seats_available" title="Please enter a number." required><br>
+        Contact Information (email):<br>
+        <input type="text" name="contact_info" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required><br>
+        <input type="submit" name = "user_input" value="Submit A Car Pool Form">
+        </form>
+        <div class = "formcontainer" style="color:black">
+{% else %}
+<div class = "formcontainer" style="color:black"> Error! You must be logged in to edit a listing </div>
+{% endif %}
+{% endblock %}

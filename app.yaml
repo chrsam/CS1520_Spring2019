@@ -1,0 +1,12 @@
+runtime: python37
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: auto
+
+env_variables:
+    SENDGRID_API_KEY: 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
+    SENDGRID_SENDER: carpoolemails@gmail.com

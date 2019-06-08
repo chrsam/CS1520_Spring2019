@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pittrideshare",
+  "private_key_id": "ce011d1affb54c28b471725c631e29c0e8ac6038",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDwpO1TMU/N2UFa\nucDZSJtmUO6rLKpO5QHP6ayolNXuOP+PuKKq9IJx44DMnR/80DqJYtX+tAa3N6Us\nhosSYOJHkqLa4BnHtJdDKVH0vYP/Gxt7JjSO3hx87CPdTFuMtM1hSL/jgdCecj8B\nkWJBbI7ZDsqmn6jAeBtydMOg1ys/eGMhlpRS3E7rxToijuc8uS6HtOFwaN/QHjeE\nBsi7/HkQPjwK2tY3tx6I2qg5u6/EOnMBN2zeWMXk5HDOFAlD5lGRFSuDhQWWXwaB\nUEFB0xniDy014Vm2YQFxkGjWXoneXFGGfbHFivtY6cRusZDkDppOtovxOTy13rKj\ncZK4OqoLAgMBAAECggEABg1sO+ymLA12NRxziwZmPugKpoCuCkEfoH/AetDKaHis\nb124xaeCaDW2CIyDUfJYDo79xmmaRowM398KmZaBxKGGed/Oaox7Lxg0oxQ6b54r\nsS6NZzge/Tb9mBz4ZcRYvGf4U+plP1khEkdAT4cHZ3WJ6qRLRZLllXben3U3DO3L\n9Ca5l6SpUZffoRsXgI6khVCzmITWkbNrCF20HirAVONDckfmN8eqyFOQIyZsMgBu\nOmfrR37hP2R+zUKTDRUYbeAkSJr7YCeJhe+LLPYpG8w7uj/LUPJMT3tN9+irCKQ5\nLaaR3DpXyFHa71hcDoWKvMnwmZijTGKuayUuF9yGEQKBgQD8c5UHkCK6kxNr5Cnx\nv0M60sMgReqWfvtvI284PXKsjgHuVyCcKU45XPmph+Fqn421Vt9FtfYdsb9etiOm\nYUKzl3aUUDHrXwQ1CbdoBxeT38yXI2XOfAlsVd8seZGAPXABWMBPKSBYsPZv0FT6\nMiw4F9scFOxGhiE90OmSBR1PEQKBgQD0BtudzTmzrfNyKY458ceItHNx7Hp9Iot+\n8TZba2uR9N4gdvgDFYW+sNy48t5jfWaRlTMIi/azOhFZ+CevSZnUrUff8ii9txF6\nM43N5BhWo4R2PlN06uz+MgLGLlIncw16iMa+lCrtseIQ0q7+6X23fdWff/BmNe1o\nK58V73SfWwKBgAZn7G0vtCHl34VKWeIfh1YzyO3FuGkvObQdQxI7RPCp/dSNc29j\nAPAlstQhdY/eEpt6Y9oB/wfL3d5KYucy6p1iB4lF665cT+AEqhnCrE99S1S+ejPe\nI+MS3sHjJ9UIOhJerSqVEZQOkYJO2AktQr/9ovq4cTJs7uUBqxugc5jxAoGAUT4z\nQc9ApbSFN33kTyBS2Q2S3dvoT97/aEzwVvFlh9tpVI+nNIem1nzVj3G0XpUyX8e3\njOHkSXlMq5J1y+MKJwdlxYY+0CKx2+hsDp8hBz87a46GhIduTZbi244yZdXlJ+V/\nnZWA0VAGvqkV/+JGq59mTsrug2jy2FqlhU0Km78CgYBJxbvevBkoUyQuXlOROSoA\nDyBcsJj/1RPkyvdOFquVL4yEEQOOWL8T2wEvjwE8AKrFGTPH2PuQvLqTd6JhEPMH\nXow2+156JX60WR0dAXVfKd25m6m5hiWqq++UB3MCdaKtlmasrmo52PmgdncGd12a\ntdMhdsd7nCksdySktjmmlQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "mydatastore@pittrideshare.iam.gserviceaccount.com",
+  "client_id": "113759614732259911663",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mydatastore%40pittrideshare.iam.gserviceaccount.com"
+}

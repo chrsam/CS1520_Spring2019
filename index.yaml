@@ -1,0 +1,6 @@
+indexes:
+
+- kind: CarpoolUser
+  properties:
+  - name: email
+  - name: passwordhash

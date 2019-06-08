@@ -1,0 +1,149 @@
+{% extends '_base.html' %}
+{% block content %}
+{% if user %}
+    <div class = "formcontainer" style="color:black">
+        <h2> Instructions </h2>
+        <p>
+        <br> Remember: Denote whether you are LOOKING for a ride or PROVIDING a ride in the description.
+        <br> Enter relative start and end locations (ie closest city/town) along  with the dates
+        <br> In the description, include a little blurb. Remember to add splitting gas + other preferences!
+        <br> Also, include the best way to contact you as this is how you will arrange the rideshare! 
+        </p>
+    </div>
+    <hr>
+    <div class = "formcontainer" style="color:black">
+    <body>
+        <form id ="test" action="/process" method="post" onsubmit="return checkOverlap(this);">
+        Start Destination:<br>
+        <input type="text" name="start_destination"  required><br>
+        End Destination:<br>
+        <input type="text" name="end_destination" required><br>
+        Start Date:<br>
+        <input type="date" id="start_date" name="start_date" min="2019-04-15" required></input><br>
+        End Date:<br>
+        <input type="date" name="end_date" min="2019-04-15" required><br>
+        Description:<br>
+        <input type="text" name="description" required><br>
+        Seats available:<br>
+        <input type="number" name="seats_available" title="Please enter a number." max="10" required><br>
+        Contact Information (email):<br>
+        <input type="text" name="contact_info" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required><br>
+        <input type="submit" name = "user_input" value="Submit Rideshare Request">
+        </form>
+        <div class = "formcontainer" style="color:black">
+{% else %}
+<div class = "formcontainer" style="color:black"> Error! You must be logged in to view the listings </div>
+{% endif %}
+{% endblock %}
+
+
+<!--
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+    today = mm+'-'+dd+'-'+yyyy;
+    document.getElementById("start_date").setAttribute("min", today);
+    document.getElementById("end_date").setAttribute("min", today);
+
+    function checkOverlap(form)
+    {
+
+    }
+</script>
+-->
+     <!--   
+        <script>
+            // this function converts a simple key-value object to a parameter string.
+            function objectToParameters(obj) {
+                let text = '';
+                for (var i in obj) {
+                // encodeURIComponent is a built-in function that escapes to URL-safe values
+                text += encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]) + '&';
+                }
+                return text;
+            }  
+
+            document.getElementById('test').addEventListener('submit', sendListing);
+
+            function sendListing(e){
+            e.preventDefault();
+
+            var startDestination = document.getElementById('start_des').value;
+            var endDestination = document.getElementById('end_des').value;
+            var sdate = document.getElementById('startdate').value;
+            var edate = document.getElementById('enddate').value;
+            var destin = document.getElementById('des').value;
+            var seats = document.getElementById('seats_av').value;
+            var contact = document.getElementById('contact_in').value;
+            var listing = new Object();
+            listing.startdes = startDestination;
+            listing.endDes = endDestination;
+            listing.sDate = sdate;
+            listing.eDate = edate;
+            listing.Seats = seats;
+            listing.Contact = contact;
+            
+            var params = objectToParameters(listing);
+
+            var xhr = new XMLHttpRequest();
+
+            console.log(xhr);
+
+            xhr.open('POST', '/process', true);
+
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            /*
+            xhr.onload = function(){
+                if(this.status == 200)
+                {
+                   console.log(this.responseText);
+                }
+            }*/
+
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    console.log(this.responseText);
+                }
+            }
+
+            
+            //send request
+             xhr.send(parms);
+            }
+
+                
+            function sendJsonRequest(targetUrl, parameters, callbackFunction){
+                let xmlHttp = createXmlHttp();
+                xmlHttp.onreadystatechange = function(){
+                if(xmlHttp.readyState == 4){
+      	            try{
+      		            let myObject = JSON.parse(xmlHttp.responseText);
+      		            callbackFunction(myObject, targetUrl, parameters);
+      	            }catch(exc){
+      	                showError("There was a problem at the server.");
+      	            }
+                }
+            }
+            postParameters(xmlHttp, targetUrl, parameters);
+            } 
+
+            function postParameters(xmlHttp, targetUrl, parameters){
+                    if(xmlHttp){
+  	                console.log("Creating POST request to " + targetUrl);
+  	                xmlHttp.open("POST", targetUrl, true);
+        	        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        	        console.log("Sending parameters: " + parameters);
+        	        xmlHttp.send(parameters);
+                }
+            } 
+        </script>
+        -->

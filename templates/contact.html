@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block content %}
+<div class = "formcontainer" style="color:black">
+    <h3>Contact Us</h3>
+    If you have any comments, concerns, or suggestions, feel free to send us a message using the form below!<br> <br>
+    <div class ="formcontainer">
+        <form action="/contactsubmission" method="post">
+            
+            <label for="name">Full Name</label> <br>
+            <input type="text" id="name" name="fullname" placeholder="Your first and last name" required> <br>
+
+            <label for="email">Email</label> <br>
+            <input type="text" placeholder="Enter Email" name="email" pattern="[a-z0-9._%+-]+@[pitt]+\.[edu]{3,}$" title="Must be your Pitt email" required>
+
+            <label for="comments">Questions or Comments</label> <br>       
+            <textarea id="text" name="comments" placeholder="Write your concerns here..." style="height:200px" required></textarea><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

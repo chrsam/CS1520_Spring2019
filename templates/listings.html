@@ -1,0 +1,71 @@
+{% extends '_base.html' %}
+{% block content %}
+{% if user %}
+<div class = "formcontainer" style="color:black"> 
+<h2 align="center">Available Listings:</h2>
+</div>
+{% for listing in listings %}
+<div class = "formcontainer" style="color:black">
+<table style="width:50%;border: 1px solid black;border-collapse: collapse;" align="center">
+  <tr>
+    <th>Start: {{listing.start_destination}} </th>
+    <th>End: {{listing.end_destination}}</th>
+  </tr>
+  <!--
+  <tr>
+    <td style="text-align:center">{{listing.start_destination}}</td>
+    <td style="text-align:center">{{listing.end_destination}}</td>
+  </tr> -->
+  <tr>
+    <td style="text-align:center">{{listing.start_date}}</td>
+    <td style="text-align:center">{{listing.end_date}}</td>
+  </tr>
+  <tr>
+  	<td colspan="2" style="border: 1px solid black;text-align:left;padding:15"> Description: {{listing.description}} </td>
+  </tr>
+  <tr>
+  	<td style="text-align:center">Seats available: {{listing.seats_available}}</td>
+    <td style="text-align:center">Contact info: {{listing.contact_info}}</td>
+  </tr>
+</table>
+</div>
+
+{% endfor %}
+{% else %}
+<div class = "formcontainer" style="color:black"> Error! You must be logged in to view the listings </div>
+{% endif %}
+{% endblock %}
+    <!--
+    <button id = 'button'>Get Text</button>
+    <div id=listingsText></div>
+        <script>
+        //create event listener 
+        document.getElementById('button').addEventListener('click', loadText);
+
+        function loadText(){
+            
+            var xhr = new XMLHttpRequest();
+
+            console.log(xhr);
+
+            xhr.open('GET', '/listings', true);
+/*
+            xhr.onload = function(){
+                if(this.status == 200)
+                {
+                   console.log(this.responseText);
+                }
+            }*/
+
+            xhr.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200)
+                {
+                    document.getElementById('listingsText') = this.responseText;
+                }
+            }
+
+            
+            //send request
+             xhr.send();
+        }
+    </script>-->
